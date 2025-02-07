@@ -1,21 +1,25 @@
 <?php
-$longitud = 12; //logitud de la contraseña
+$longitud = 12; // Longitud de la contraseña
 $caracteres_permitidos = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
 
-function generar_password($longitud, $caracteres_permitidos){
-    $password = '';
-    $max_index = strlen($caracteres_permitidos)-1;
+function generar_contrasena_y_max_index($longitud, $caracteres) {
+    $contrasena = '';
+    $max_index = strlen($caracteres) - 1;
 
-    echo '<h1>Muestra la variable max_index</h1>' . $max_index; // Mostrar el valor de max_index
-    
-    for ($i = 0; $i < $longitud; $i++){
-        $password .= $caracteres_permitidos[random_int(0, $max_index)];
+    for ($i = 0; $i < $longitud; $i++) {
+        $contrasena .= $caracteres[random_int(0, $max_index)];
     }
-    return $password;
+
+    return array('contrasena' => $contrasena, 'max_index' => $max_index);
 }
 
-echo 'Contraseña generada: '. generar_password($longitud,$caracteres_permitidos);
+// Obtener la contraseña y el max_index
+$resultado = generar_contrasena_y_max_index($longitud, $caracteres_permitidos);
 
+// Mostrar los resultados
+echo '<h1>Muestra la variable max_index</h1>' . $resultado['max_index'];
+echo '<br>Contraseña generada: ' . $resultado['contrasena'];
 ?>
+
 
 
